@@ -1,178 +1,184 @@
-Temperature Monitoring Embedded System
-Student
-Candidate Name:
-IZERE ANNA 
+<h1 style="color:#0066cc;">🌡️ Temperature Monitoring Embedded System</h1>
 
+<span style="color:#1f8f3f; font-weight:bold;">Student</span><br>
+**Candidate Name:** `IZERE ANNA`
 
-Project Title
-Temperature Monitoring Embedded System using Arduino UNO, LCD, Serial Communication and MQTT
+## 🔧 Project Title
+**Temperature Monitoring Embedded System using Arduino UNO, LCD, Serial Communication and MQTT**
 
-
-Project Description
+## 📌 Project Description
 This project implements an embedded temperature monitoring system.
 
 The Arduino Uno reads temperature data from an LM35 sensor, displays the value on a 16×2 LCD, and transmits the temperature to a PC using USB Serial Communication.
 
 A Python application running on the PC receives the temperature values and publishes them to an MQTT broker hosted on a Virtual Private Server (VPS).
 
-
-
-Objectives
-
+## 🎯 Objectives
 The project demonstrates:
 
-Temperature sensing
-LCD interfacing
-Horizontal scrolling text
-Serial communication
-Python serial programming
-MQTT communication
-IoT data transmission
+- ✅ Temperature sensing
+- ✅ LCD interfacing
+- ✅ Horizontal scrolling text
+- ✅ Serial communication
+- ✅ Python serial programming
+- ✅ MQTT communication
+- ✅ IoT data transmission
 
+## 📁 Project Structure
+```
+examPra/
+├── README.md
+├── requirements.txt
+├── arduino/
+│   └── temperature_monitor.ino
+└── pc_client/
+    └── pc_monitor.py
+```
 
+## 🧠 System Architecture
 
+<span style="color:#004b87; font-weight:bold;">Architecture diagram</span>
 
-Hardware Used
-Component	Purpose
-Arduino Uno	Main controller
-LM35 Temperature Sensor	Temperature measurement
-16×2 LCD (I2C)	Display
-USB Cable	Serial Communication
-PC	Monitoring
-MQTT Broker (VPS)	IoT Communication
-Software Used
-Arduino IDE
-
-Python 3
-
-VS Code (optional)
-
-MQTT Broker
-
-PySerial
-
-Paho MQTT
-
-
-System Architecture
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
-│                        EMBEDDED TEMPERATURE MONITORING SYSTEM                           │
-│                              SYSTEM ARCHITECTURE DIAGRAM                                │
+│                             SYSTEM ARCHITECTURE DIAGRAM                                  │
 └─────────────────────────────────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
 │                                                                                         │
-│  ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐                     │
-│  │                 │    │                 │    │                 │                     │
-│  │   Temperature   │    │   Arduino Uno   │    │   16x2 LCD      │                     │
-│  │   Sensor (LM35) │───▶│   Pin A0        │────│   Display       │                     │
-│  │                 │    │                 │    │                 │                     │
-│  │  - VCC → 5V     │    │  Pin 12 → RS    │    │  Row 1: Name    │                     │
-│  │  - GND → GND    │    │  Pin 11 → EN    │    │  Row 2: Temp    │                     │
-│  │  - OUT → A0     │    │  Pin 5  → D4    │    │                 │                     │
-│  └─────────────────┘    │  Pin 4  → D5    │    └─────────────────┘                     │
-│                         │  Pin 3  → D6    │                                             │
-│                         │  Pin 2  → D7    │                                             │
-│                         └─────────────────┘                                             │
-│                                   │                                                     │
-│                                   │ USB Serial                                          │
-│                                   │ (9600 baud, 8N1)                                   │
-│                                   ▼                                                     │
-│                         ┌─────────────────────────────────────┐                        │
-│                         │                                     │                        │
-│                         │         PC CLIENT PROGRAM           │                        │
-│                         │         (Python with pyserial)      │                        │
-│                         │                                     │                        │
-│                         │  ┌─────────────────────────────┐   │                        │
-│                         │  │ 1. Read Serial Data         │   │                        │
-│                         │  │ 2. Parse Temperature Value  │   │                        │
-│                         │  │ 3. Display Real-time Data   │   │                        │
-│                         │  │ 4. Publish to MQTT Broker   │   │                        │
-│                         │  └─────────────────────────────┘   │                        │
-│                         │                                     │                        │
-│                         └─────────────────────────────────────┘                        │
-│                                   │                                                     │
-│                                   │ MQTT Protocol                                       │
-│                                   │ Topic: sensors/temperature                          │
-│                                   ▼                                                     │
-│                         ┌─────────────────────────────────────┐                        │
-│                         │                                     │                        │
-│                         │         MQTT BROKER (VPS)           │                        │
-│                         │         Mosquitto / EMQX            │                        │
-│                         │                                     │                        │
-│                         └─────────────────────────────────────┘                        │
-│                                   │                                                     │
-│                                   │ MQTT Subscription                                    │
-│                                   ▼                                                     │
-│                         ┌─────────────────────────────────────┐                        │
-│                         │                                     │                        │
-│                         │      REMOTE SUBSCRIBERS             │                        │
-│                         │   (Other IoT Clients / Web Apps)    │                        │
-│                         │                                     │                        │
-│                         └─────────────────────────────────────┘                        │
+│  ┌────────────────────────┐    ┌───────────────────┐    ┌──────────────────────────────┐   │
+│  │                        │    │                   │    │                              │   │
+│  │  Temperature Sensor    │───▶│   Arduino Uno     │────│  16x2 LCD Display            │   │
+│  │      (LM35)            │    │      A0 input     │    │  Row 1: Candidate name       │   │
+│  │                        │    │                   │    │  Row 2: Temperature value    │   │
+│  │  VCC → 5V              │    │  RS → D12         │    │                              │   │
+│  │  GND → GND             │    │  EN → D11         │    │                              │   │
+│  │  OUT → A0              │    │  D4 → D5          │    │                              │   │
+│  └────────────────────────┘    │  D5 → D4          │    └──────────────────────────────┘   │
+│                                 │  D6 → D3          │                                         │
+│                                 │  D7 → D2          │                                         │
+│                                 └───────────────────┘                                         │
+│                                           │                                                 │
+│                                           │ USB Serial (9600 baud)                           │
+│                                           ▼                                                 │
+│                                 ┌───────────────────────────┐                               │
+│                                 │                           │                               │
+│                                 │     PC Client Program     │                               │
+│                                 │     (Python with pyserial)│                               │
+│                                 │                           │
+│                                 │  - Read serial data       │                               │
+│                                 │  - Display incoming value │                               │
+│                                 │  - Publish to MQTT        │                               │
+│                                 └───────────────────────────┘                               │
+│                                           │                                                 │
+│                                           │ MQTT Protocol                                   │
+│                                           │ Topic: sensor/temperature/reading              │
+│                                           ▼                                                 │
+│                                 ┌───────────────────────────┐                               │
+│                                 │                           │                               │
+│                                 │      MQTT Broker (VPS)    │                               │
+│                                 │   (Mosquitto / EMQX / etc)│                               │
+│                                 │                           │
+│                                 └───────────────────────────┘                               │
+│                                           │                                                 │
+│                                           │ MQTT Subscription                               │
+│                                           ▼                                                 │
+│                                 ┌───────────────────────────┐                               │
+│                                 │                           │                               │
+│                                 │    Remote Subscribers     │                               │
+│                                 │   (Web client / IoT apps) │                               │
+│                                 │                           │
+│                                 └───────────────────────────┘                               │
 │                                                                                         │
 └─────────────────────────────────────────────────────────────────────────────────────────┘
 
-                              COMMUNICATION PROTOCOLS
-┌─────────────────────────────────────────────────────────────────────────────────────────┐
-│                                                                                         │
-│  ┌───────────────────────┐    ┌──────────────────────────────────────────────────────┐ │
-│  │  SERIAL COMMUNICATION │    │  MQTT COMMUNICATION                                  │ │
-│  ├───────────────────────┤    ├──────────────────────────────────────────────────────┤ │
-│  │  Interface: USB Serial│    │  Protocol: MQTT v3.1.1                               │ │
-│  │  Baud Rate: 9600      │    │  Topic: sensors/temperature                          │ │
-│  │  Data Bits: 8         │    │  QoS: 1                                             │ │
-│  │  Stop Bits: 1         │    │  Port: 1883                                         │ │
-│  │  Parity: None         │    │  Format: JSON                                        │ │
-│  │  Flow Control: None   │    │  Payload: {"temperature": 25.5, "unit": "C"}        │ │
-│  └───────────────────────┘    └──────────────────────────────────────────────────────┘ │
-│                                                                                         │
-└─────────────────────────────────────────────────────────────────────────────────────────┘
+## 🔌 Communication Channels
 
-                               SYSTEM FLOW
-┌─────────────────────────────────────────────────────────────────────────────────────────┐
-│                                                                                         │
-│  Temperature → Analog Reading → ADC Conversion → Temperature Calculation → Display     │
-│  Sensor      (A0)           (10-bit)        (°C = voltage * 100)    on LCD             │
-│                                                                                         │
-│                              ↓                                                         │
-│                                                                                         │
-│  Send via Serial → PC Reads → Parses → Displays → Publishes to MQTT → Remote Clients   │
-│  (JSON Format)   Serial Port  Data     on Screen   Broker (VPS)    Subscribe            │
-│                                                                                         │
-└─────────────────────────────────────────────────────────────────────────────────────────┘
+- **Serial communication:** `Arduino Uno USB Serial`
+- **Example port:** `COM3` (Windows) / `/dev/ttyUSB0` (Linux)
+- **Baud rate:** `9600`
 
-                               HARDWARE CONNECTIONS
-┌─────────────────────────────────────────────────────────────────────────────────────────┐
-│                                                                                         │
-│  LM35 Temperature Sensor → Arduino Uno:                                                │
-│  ┌─────────────┬─────────────┬─────────────────────────────────────────────────────┐  │
-│  │ LM35 Pin    │ Arduino Pin │ Description                                         │  │
-│  ├─────────────┼─────────────┼─────────────────────────────────────────────────────┤  │
-│  │ VCC (Pin 1) │ 5V          │ Power Supply                                        │  │
-│  │ GND (Pin 3) │ GND         │ Ground Connection                                   │  │
-│  │ OUT (Pin 2) │ A0          │ Analog Input for Temperature Reading                │  │
-│  └─────────────┴─────────────┴─────────────────────────────────────────────────────┘  │
-│                                                                                         │
-│  16x2 LCD Display → Arduino Uno:                                                       │
-│  ┌─────────────┬─────────────┬─────────────────────────────────────────────────────┐  │
-│  │ LCD Pin     │ Arduino Pin │ Description                                         │  │
-│  ├─────────────┼─────────────┼─────────────────────────────────────────────────────┤  │
-│  │ VSS (1)     │ GND         │ Ground                                              │  │
-│  │ VDD (2)     │ 5V          │ Power Supply                                        │  │
-│  │ V0 (3)      │ Potentiometer│ Contrast Adjust (10k pot)                          │  │
-│  │ RS (4)      │ Pin 12      │ Register Select                                     │  │
-│  │ RW (5)      │ GND         │ Read/Write (GND = Write)                            │  │
-│  │ EN (6)      │ Pin 11      │ Enable                                              │  │
-│  │ D4 (11)     │ Pin 5       │ Data Bit 4                                          │  │
-│  │ D5 (12)     │ Pin 4       │ Data Bit 5                                          │  │
-│  │ D6 (13)     │ Pin 3       │ Data Bit 6                                          │  │
-│  │ D7 (14)     │ Pin 2       │ Data Bit 7                                          │  │
-│  │ A (15)      │ 5V + 220Ω   │ Backlight Anode (with resistor)                     │  │
-│  │ K (16)      │ GND         │ Backlight Cathode                                   │  │
-│  └─────────────┴─────────────┴─────────────────────────────────────────────────────┘  │
-│                                                                                         │
-└─────────────────────────────────────────────────────────────────────────────────────────┘
+- **MQTT topic:** `sensor/temperature/reading`
+- **MQTT broker:** VPS hostname or IP
+- **MQTT port:** `1883`
+
+## 🔄 Data Flow
+Temperature Sensor
+
+↓
+
+Arduino UNO
+
+↓
+
+LCD Display
+
+↓
+
+USB Serial
+
+↓
+
+Python Program
+
+↓
+
+MQTT
+
+## 📺 LCD Display Output
+- **First Row:** Candidate Name
+- **Second Row:** `Temp: 28.5 C`
+
+## 💻 Example Serial Output
+- `28.50`
+- `28.63`
+- `28.71`
+
+## 🌐 MQTT Configuration
+- **Broker:** `YOUR VPS IP`
+- **Port:** `1883`
+- **Topic:** `sensor/temperature/reading`
+- **Example payload:** `28.65`
+
+## ✅ Expected Output
+**LCD**
+- `Anne Izere`
+- `Temp:28.7 C`
+
+**PC Console**
+- `Temperature = 28.70 C`
+- `Temperature = 28.81 C`
+- `Temperature = 28.93 C`
+
+**MQTT Broker**
+- Topic: `sensor/temperature/reading`
+- Payload: `28.70`
+
+## 📎 Hardware Connections
+
+**LM35 Temperature Sensor → Arduino Uno**
+
+| LM35 Pin | Arduino Pin | Description |
+|----------|-------------|-------------|
+| VCC (Pin 1) | 5V | Power Supply |
+| GND (Pin 3) | GND | Ground |
+| OUT (Pin 2) | A0 | Analog input for temperature |
+
+**16x2 LCD Display → Arduino Uno**
+
+| LCD Pin | Arduino Pin | Description |
+|---------|-------------|-------------|
+| VSS (1) | GND | Ground |
+| VDD (2) | 5V | Power Supply |
+| V0 (3) | Potentiometer | Contrast adjustment |
+| RS (4) | D12 | Register Select |
+| RW (5) | GND | Write mode |
+| EN (6) | D11 | Enable |
+| D4 (11) | D5 | Data Bit 4 |
+| D5 (12) | D4 | Data Bit 5 |
+| D6 (13) | D3 | Data Bit 6 |
+| D7 (14) | D2 | Data Bit 7 |
+| A (15) | 5V + 220Ω | Backlight Anode |
+| K (16) | GND | Backlight Cathode |
 
 
 
